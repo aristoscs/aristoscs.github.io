@@ -94,12 +94,10 @@ function initPath(current) {
 }
 
 function reset() {
-    if(mode !== BFS_MODE) {
-        mode = GRID_CREATION;
-        lastTick = 0;
-        initGrid();
-        colorReset();
-    }
+    mode = GRID_CREATION;
+    lastTick = 0;
+    initGrid();
+    colorReset();
 }
 
 function mouseEvaluation() {
