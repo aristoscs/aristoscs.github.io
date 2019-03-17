@@ -17,9 +17,8 @@ function setup() {
 }
 
 function draw() {
-    if (mode === GRID_CREATION) {
-        mouseEvaluation();
-    } else if (mode === BFS_MODE) {
+    mouseEvaluation();
+    if (mode === BFS_MODE) {
         bfsTick();
     }
     apply(node => node.update());
