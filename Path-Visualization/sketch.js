@@ -105,8 +105,11 @@ function a_star() {
 
 function initHeuristics() {
     apply(node => {
-        let goal = grid[dest.i][dest.j];
-        node.h = Math.sqrt(Math.pow(node.x - goal.x, 2) + Math.pow(node.y - goal.y, 2));
+        let goal = grid[dest.i][dest.j],
+            squareSize = goal.squareSize / 2;
+        node.h = Math.sqrt(
+            Math.pow((node.x + squareSize) - (goal.x + squareSize), 2) +
+            Math.pow((node.y + squareSize) - (goal.y + squareSize), 2))
     });
 }
 
