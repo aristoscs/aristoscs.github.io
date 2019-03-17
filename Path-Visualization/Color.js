@@ -31,7 +31,7 @@ function Color(id) {
         if (Date.now() - this.lastTime < 200) {
             return;
         }
-        this.lastTime = Date.now();
+        this.lastTime = Date.now();//
 
         if (this.id === 1) {// BLACK -> BLUE
             if (!haveStart) {
