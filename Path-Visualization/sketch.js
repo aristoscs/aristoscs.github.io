@@ -1,5 +1,6 @@
 const GRID_CREATION = 0,
     BFS_MODE = 1,
+    A_STAR_MODE = 2,
     STOPPED = 3;
 
 let grid, rows = 18, cols = 18,
@@ -20,6 +21,8 @@ function draw() {
     mouseEvaluation();
     if (mode === BFS_MODE) {
         bfsTick();
+    } else if (mode === A_STAR_MODE) {
+        a_star_tick();
     }
     apply(node => node.update());
 }
@@ -58,6 +61,50 @@ function bfsTick() {
             open.enqueue(child);
     }
     closed[current.i * cols + current.j] = 1;
+}
+
+function a_star_tick() {
+    if (open.isEmpty()) {
+        mode = STOPPED;
+        return;
+    }
+
+    let current = open.dequeue();
+    if (closed[current.i * cols + current.j] === 1)
+        return;
+
+    if (current.color.id !== DESTINATION && current.color.id !== START)
+        current.color.id = EXPANDED;
+
+    if (current.color.id === DESTINATION) {
+        mode = STOPPED;
+        initPath(current.parent);
+        return;
+    }
+
+    for (let child of current.computeChildren()) {
+        if (closed[child.i * cols + child.j] === undefined)
+            open.enqueue(child);
+    }
+    closed[current.i * cols + current.j] = 1;
+}
+
+function a_star() {
+    if (mode !== GRID_CREATION)
+        return;
+    if (!initLocations())
+        return;
+
+    mode = A_STAR_MODE;
+    open = new PriorityQueue((n1, n2) => (n1.g + n1.h) - (n2.g + n2.h));
+    closed = [];
+    grid[start.i][start.j].g = 0;
+    initHeuristics();
+    open.enqueue(grid[start.i][start.j]);
+}
+
+function initHeuristics() {
+    apply(node => node.h = Math.abs(node.i - dest.i) + Math.abs(node.j - dest.j));
 }
 
 function bfs() {

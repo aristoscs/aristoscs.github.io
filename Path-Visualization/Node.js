@@ -8,6 +8,7 @@ function Node(x, y, squareSize, color, strokeSize) {
     this.color = color;
     this.strokeSize = strokeSize;
     this.g = Infinity;
+    this.h = 0;
 
     this.update = function () {
         stroke(this.strokeSize);
@@ -18,7 +19,7 @@ function Node(x, y, squareSize, color, strokeSize) {
     this.addChild = function (children, i, j) {
         if (i >= 0 && j >= 0 && i < rows && j < cols && grid[i][j].color.id !== OBSTACLE) {
             let child = grid[i][j];
-            if (this.g + 1 < child.g) {
+            if ((this.g + this.h + 1) < (child.g + child.h)) {
                 children.push(child);
                 child.parent = this;
                 child.g = this.g + 1;
