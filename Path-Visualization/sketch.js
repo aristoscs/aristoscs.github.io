@@ -26,6 +26,10 @@ function draw() {
     apply(node => node.update());
 }
 
+function randomise() {
+    
+}
+
 function bfsTick() {
     if (open.isEmpty()) {
         mode = STOPPED;
