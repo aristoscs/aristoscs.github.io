@@ -31,9 +31,6 @@ function Color(id) {
         if (Date.now() - this.lastTime < 200) {
             return;
         }
-
-        console.log('?');
-
         this.lastTime = Date.now();
 
         if (this.id === 1) {// BLACK -> BLUE
