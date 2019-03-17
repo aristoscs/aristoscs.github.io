@@ -26,12 +26,11 @@ function draw() {
 
 function randomise() {
     let obstacles = rows + cols;
-    while (obstacles !== 0) {
+    while (obstacles-- !== 0) {
         let i = floor(Math.random() * rows),
             j = floor(Math.random() * rows);
-        if (grid[i][j].color.id !== OBSTACLE) {
+        if (grid[i][j].color.id === EMPTY) {
             grid[i][j].color.id = OBSTACLE;
-            obstacles--;
         }
     }
 }
@@ -111,14 +110,6 @@ function mouseEvaluation() {
 
 function mouseOnCanvas() {
     return mouseX >= 0 && mouseY >= 0 && mouseX < width && mouseY < height;
-}
-
-function tock(delay) {
-    if (Date.now() - lastTick < delay) {
-        return false;
-    }
-    lastTick = Date.now();
-    return true;
 }
 
 function apply(f) {

@@ -28,10 +28,11 @@ function Color(id) {
     this.lastTime = 0;
 
     this.nextColor = function () {
-        if (Date.now() - this.lastTime < 900) {
-            console.log('?');
+        if (Date.now() - this.lastTime < 200) {
             return;
         }
+
+        console.log('?');
 
         this.lastTime = Date.now();
 
