@@ -1,3 +1,7 @@
+function Node1() {
+
+}
+
 function Node(x, y, squareSize, color, strokeSize) {
 
     this.i = y;
@@ -19,7 +23,7 @@ function Node(x, y, squareSize, color, strokeSize) {
     this.addChild = function (children, i, j) {
         if (i >= 0 && j >= 0 && i < rows && j < cols && grid[i][j].color.id !== OBSTACLE) {
             let child = grid[i][j];
-            if (this.g + 1 < child.g) {
+            if ((this.g + 1) < child.g) {
                 children.push(child);
                 child.parent = this;
                 child.g = this.g + 1;

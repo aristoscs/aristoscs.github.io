@@ -96,7 +96,10 @@ function a_star() {
         return;
 
     mode = A_STAR_MODE;
-    open = new PriorityQueue((n1, n2) => (n1.g + n1.h) - (n2.g + n2.h));
+    open = new PriorityQueue((n1, n2) => {
+        let fx = (n1.g + n1.h) - (n2.g + n2.h);
+        return fx === 0 ? n2.g - n1.g : fx;
+    });
     closed = [];
     grid[start.i][start.j].g = 0;
     initHeuristics();
@@ -105,11 +108,8 @@ function a_star() {
 
 function initHeuristics() {
     apply(node => {
-        let goal = grid[dest.i][dest.j],
-            squareSize = goal.squareSize / 2;
-        node.h = Math.sqrt(
-            Math.pow((node.x + squareSize) - (goal.x + squareSize), 2) +
-            Math.pow((node.y + squareSize) - (goal.y + squareSize), 2))
+        let goal = grid[dest.i][dest.j];
+        node.h = Math.abs(node.i - goal.i) + Math.abs(node.j - goal.j);
     });
 }
 
