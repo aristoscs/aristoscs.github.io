@@ -17,8 +17,6 @@ function setup() {
 
 function draw() {
     if (mode === GRID_CREATION) {
-        if (!tock(200))
-            return;
         mouseEvaluation();
     } else if (mode === BFS_MODE) {
         bfsTick();
@@ -27,7 +25,15 @@ function draw() {
 }
 
 function randomise() {
-    
+    let obstacles = rows + cols;
+    while (obstacles !== 0) {
+        let i = floor(Math.random() * rows),
+            j = floor(Math.random() * rows);
+        if (grid[i][j].color.id !== OBSTACLE) {
+            grid[i][j].color.id = OBSTACLE;
+            obstacles--;
+        }
+    }
 }
 
 function bfsTick() {

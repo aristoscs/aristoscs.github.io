@@ -25,8 +25,16 @@ function colorReset() {
 function Color(id) {
 
     this.id = id;
+    this.lastTime = 0;
 
     this.nextColor = function () {
+        if (Date.now() - this.lastTime < 900) {
+            console.log('?');
+            return;
+        }
+
+        this.lastTime = Date.now();
+
         if (this.id === 1) {// BLACK -> BLUE
             if (!haveStart) {
                 this.id = START;
