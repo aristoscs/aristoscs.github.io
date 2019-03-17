@@ -7,9 +7,17 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8">
 
-    <button onclick="reset()">RESET</button>
-    <button onclick="bfs()">BFS</button>
-    <button onclick="randomise()">RANDOMISE</button>
+    <form id="form1">
+        Rows: <input name="rows" type="text" size="3">
+        Columns: <input name="cols" type="text" size="3">
+    </form>
+    <button onclick="changeRows(document.getElementById('form1').elements)">Submit</button>
+
+
+    <button onclick="reset()">Reset</button>
+    <button onclick="randomise()">Randomise</button>
+    <button onclick="bfs()">Breadth First Search</button>
+
 
 </head>
 <body>

@@ -12,6 +12,7 @@ let grid, rows = 18, cols = 18,
 function setup() {
     createCanvas((cols * squareSize) + strokeSize, (rows * squareSize) + strokeSize);
     background(255);
+    reset();
     initGrid();
 }
 
@@ -116,6 +117,18 @@ function apply(f) {
     for (let i = 0; i < rows; i++) {
         for (let j = 0; j < cols; j++) {
             f(grid[i][j]);
+        }
+    }
+}
+
+function changeRows(form) {
+    if (mode === GRID_CREATION) {
+        let r = parseInt(form.rows.value);
+        let c = parseInt(form.cols.value);
+        if (r && c && (r !== rows || c !== cols)) {
+            rows = r;
+            cols = c;
+            setup();
         }
     }
 }
