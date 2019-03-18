@@ -31,7 +31,7 @@ function randomise() {
     let obstacles = rows + cols;
     while (obstacles-- !== 0) {
         let i = floor(Math.random() * rows),
-            j = floor(Math.random() * rows);
+            j = floor(Math.random() * cols);
         if (grid[i][j].color.id === EMPTY) {
             grid[i][j].color.id = OBSTACLE;
         }
