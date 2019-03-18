@@ -31,20 +31,28 @@ function Node(x, y, squareSize, color, strokeSize) {
                 children.push(child);
                 child.parent = this;
                 child.g = this.g + 1;
+                return true;
             }
         }
+        return false;
     };
 
     this.computeChildren = function () {
-        let children = [];
-        this.addChild(children, this.i - 1, this.j);// DOWN
-        this.addChild(children, this.i - 1, this.j + 1);// DOWN-R
-        this.addChild(children, this.i - 1, this.j - 1);// DOWN-L
-        this.addChild(children, this.i, this.j + 1);// RIGHT
-        this.addChild(children, this.i + 1, this.j);// UP
-        this.addChild(children, this.i + 1, this.j + 1);// UP-R
-        this.addChild(children, this.i + 1, this.j - 1);// UP-L
-        this.addChild(children, this.i, this.j - 1);// LEFT
+        let children = [],
+            down = this.addChild(children, this.i - 1, this.j),
+            up = this.addChild(children, this.i + 1, this.j),
+            left = this.addChild(children, this.i, this.j - 1),
+            right = this.addChild(children, this.i, this.j + 1);
+
+        if (down && right)
+            this.addChild(children, this.i - 1, this.j + 1);
+        if (down && left)
+            this.addChild(children, this.i - 1, this.j - 1);
+        if (up && right)
+            this.addChild(children, this.i + 1, this.j + 1);
+        if (up && left)
+            this.addChild(children, this.i + 1, this.j - 1);
+
         return children;
     }
 }
