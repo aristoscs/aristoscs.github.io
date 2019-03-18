@@ -1,7 +1,11 @@
-function Node1() {
-
-}
-
+/**
+ * @param x coordinate on the canvas
+ * @param y coordinate on the canvas
+ * @param squareSize of the Node
+ * @param color displayed by the Node
+ * @param strokeSize, thickness of Node square
+ * @constructor
+ */
 function Node(x, y, squareSize, color, strokeSize) {
 
     this.i = y;
