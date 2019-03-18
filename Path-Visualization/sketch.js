@@ -109,7 +109,7 @@ function a_star() {
 function initHeuristics() {
     apply(node => {
         let goal = grid[dest.i][dest.j];
-        node.h = Math.abs(node.i - goal.i) + Math.abs(node.j - goal.j);
+        node.h = Math.sqrt(Math.pow(node.x - goal.x, 2) + Math.pow(node.y - goal.y, 2));
     });
 }
 

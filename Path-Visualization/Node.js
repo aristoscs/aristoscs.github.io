@@ -38,8 +38,12 @@ function Node(x, y, squareSize, color, strokeSize) {
     this.computeChildren = function () {
         let children = [];
         this.addChild(children, this.i - 1, this.j);// DOWN
+        this.addChild(children, this.i - 1, this.j + 1);// DOWN-R
+        this.addChild(children, this.i - 1, this.j - 1);// DOWN-L
         this.addChild(children, this.i, this.j + 1);// RIGHT
         this.addChild(children, this.i + 1, this.j);// UP
+        this.addChild(children, this.i + 1, this.j + 1);// UP-R
+        this.addChild(children, this.i + 1, this.j - 1);// UP-L
         this.addChild(children, this.i, this.j - 1);// LEFT
         return children;
     }
