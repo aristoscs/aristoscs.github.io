@@ -174,7 +174,7 @@ function apply(f) {
 }
 
 function changeRows(form) {
-    if (mode === GRID_CREATION) {
+    if (mode === GRID_CREATION || mode === STOPPED) {
         let r = parseInt(form.rows.value);
         let c = parseInt(form.cols.value);
         if (r && c && (r !== rows || c !== cols)) {
