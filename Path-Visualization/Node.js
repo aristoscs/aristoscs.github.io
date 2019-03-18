@@ -28,11 +28,11 @@ function Node(x, y, squareSize, color, strokeSize) {
         if (i >= 0 && j >= 0 && i < rows && j < cols && grid[i][j].color.id !== OBSTACLE) {
             let child = grid[i][j];
             if ((this.g + 1) < child.g) {
-                children.push(child);
                 child.parent = this;
                 child.g = this.g + 1;
-                return true;
             }
+            children.push(child);
+            return true;
         }
         return false;
     };
