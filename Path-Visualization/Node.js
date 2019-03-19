@@ -30,8 +30,8 @@ function Node(x, y, squareSize, color, strokeSize) {
             if (this.g + 1 < child.g) {
                 child.parent = this;
                 child.g = this.g + 1;
+                children.push(child);
             }
-            children.push(child);
             return true;
         }
         return false;
@@ -39,18 +39,18 @@ function Node(x, y, squareSize, color, strokeSize) {
 
     this.computeChildren = function () {
         let children = [],
-            down = this.addChild(children, this.i - 1, this.j),
-            up = this.addChild(children, this.i + 1, this.j),
+            up = this.addChild(children, this.i - 1, this.j),
+            down = this.addChild(children, this.i + 1, this.j),
             left = this.addChild(children, this.i, this.j - 1),
             right = this.addChild(children, this.i, this.j + 1);
 
-        if (down && right)
-            this.addChild(children, this.i - 1, this.j + 1);
-        if (down && left)
-            this.addChild(children, this.i - 1, this.j - 1);
         if (up && right)
-            this.addChild(children, this.i + 1, this.j + 1);
+            this.addChild(children, this.i - 1, this.j + 1);
         if (up && left)
+            this.addChild(children, this.i - 1, this.j - 1);
+        if (down && right)
+            this.addChild(children, this.i + 1, this.j + 1);
+        if (down && left)
             this.addChild(children, this.i + 1, this.j - 1);
 
         return children;
