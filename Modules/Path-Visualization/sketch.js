@@ -7,7 +7,7 @@ const GRID_CREATION = 0,
 let grid, rows = 18, cols = 18,
     squareSize = 33, strokeSize = 5,
     mode = GRID_CREATION,
-    open, closed = [],
+    open, closed,
     start, dest;
 
 /**
@@ -68,6 +68,7 @@ function setupSearch(queueType) {
     }
     mode = SEARCHING;
     open = queueType;
+    closed = [];
 
     apply(node => {
         let goal = grid[dest.i][dest.j];
