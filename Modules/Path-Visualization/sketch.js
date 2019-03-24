@@ -1,15 +1,19 @@
+// Sketch modes for draw()
 const GRID_CREATION = 0,
-    BFS_MODE = 1,
-    A_STAR_MODE = 2,
-    STOPPED = 3;
+    SEARCHING = 1,
+    STOPPED = 2;
 
+// Sketch variables
 let grid, rows = 18, cols = 18,
     squareSize = 33, strokeSize = 5,
     mode = GRID_CREATION,
     lastTick = 0,
-    open, closed,
+    open, closed = [],
     start, dest;
 
+/**
+ * Called at the start of the sketch.
+ */
 function setup() {
     createCanvas((cols * squareSize) + strokeSize, (rows * squareSize) + strokeSize);
     background(255);
@@ -19,14 +23,15 @@ function setup() {
 
 function draw() {
     mouseEvaluation();
-    if (mode === BFS_MODE) {
-        bfsTick();
-    } else if (mode === A_STAR_MODE) {
-        a_star_tick();
+    if (mode === SEARCHING) {
+        tick();
     }
     apply(node => node.update());
 }
 
+/**
+ * Puts a few random obstacles on the grid.
+ */
 function randomise() {
     let obstacles = rows + cols;
     while (obstacles-- !== 0) {
@@ -38,7 +43,7 @@ function randomise() {
     }
 }
 
-function bfsTick() {
+function tick() {
     if (open.isEmpty()) {
         mode = STOPPED;
         return;
@@ -63,64 +68,17 @@ function bfsTick() {
     closed[current.i * cols + current.j] = 1;
 }
 
-function a_star_tick() {
-    if (open.isEmpty()) {
-        mode = STOPPED;
+function setupSearch(queueType) {
+    if (mode !== GRID_CREATION || !initLocations()) {
         return;
     }
-    let current = open.dequeue();
-    if (closed[current.i * cols + current.j] === 1)
-        return;
+    mode = SEARCHING;
+    open = queueType;
 
-    if (current.color.id !== DESTINATION && current.color.id !== START)
-        current.color.id = EXPANDED;
-
-    if (current.color.id === DESTINATION) {
-        mode = STOPPED;
-        initPath(current.parent);
-        return;
-    }
-
-    for (let child of current.computeChildren()) {
-        if (closed[child.i * cols + child.j] === undefined)
-            open.enqueue(child);
-    }
-    closed[current.i * cols + current.j] = 1;
-}
-
-function a_star() {
-    if (mode !== GRID_CREATION)
-        return;
-    if (!initLocations())
-        return;
-
-    mode = A_STAR_MODE;
-    open = new PriorityQueue((n1, n2) => {
-        let fx = (n1.g + n1.h) - (n2.g + n2.h);
-        return fx === 0 ? n2.g - n1.g : fx;
-    });
-    closed = [];
-    grid[start.i][start.j].g = 0;
-    initHeuristics();
-    open.enqueue(grid[start.i][start.j]);
-}
-
-function initHeuristics() {
     apply(node => {
         let goal = grid[dest.i][dest.j];
-        //node.h = Math.abs(node.x - goal.x) + Math.abs(node.y - goal.y);
-        node.h = Math.sqrt(Math.pow(node.x - goal.x, 2) + Math.pow(node.y - goal.y, 2))
+        node.h = Math.sqrt(Math.pow(node.x - goal.x, 2) + Math.pow(node.y - goal.y, 2));
     });
-}
-
-function bfs() {
-    if (mode !== GRID_CREATION)
-        return;
-    if (!initLocations())
-        return;
-    mode = BFS_MODE;
-    open = new Queue();
-    closed = [];
     grid[start.i][start.j].g = 0;
     open.enqueue(grid[start.i][start.j]);
 }

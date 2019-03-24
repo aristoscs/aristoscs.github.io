@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- P5 library -->
     <script src="../../Libraries/P5/p5.min.js"></script>
     <script src="../../Libraries/P5/p5.sound.min.js"></script>
 
+    <!-- Data-Structures -->
     <script src="../../Libraries/Data-Structures/PriorityQueue.js"></script>
     <script src="../../Libraries/Data-Structures/Queue.js"></script>
 
+    <!-- Subclasses of Module -->
     <script src="sketch.js"></script>
     <script src="Node.js"></script>
     <script src="Color.js"></script>
+
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8">
 
@@ -23,8 +27,12 @@
 
     <button onclick="reset()">Reset</button>
     <button onclick="randomise()">Randomise</button>
-    <button onclick="bfs()">Breadth First Search</button>
-    <button onclick="a_star()">A*</button>
+    <button onclick="setupSearch(new Queue())">Breadth First Search</button>
+    <button onclick="setupSearch(new PriorityQueue((n1, n2) => {
+        let fx = (n1.g + n1.h) - (n2.g + n2.h);
+        return fx === 0 ? n2.g - n1.g : fx;
+    }))"
+    >A*</button>
 
 </head>
 </html>
