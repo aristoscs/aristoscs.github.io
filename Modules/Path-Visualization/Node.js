@@ -1,31 +1,48 @@
-/**
- * @param x coordinate on the canvas
- * @param y coordinate on the canvas
- * @param squareSize of the Node
- * @param color displayed by the Node
- * @param strokeSize, thickness of Node square
- * @constructor
- */
-function Node(x, y, squareSize, color, strokeSize) {
+const WHITE = 0,
+    BLACK = 1,
+    BLUE = 2,
+    RED = 3,
+    PURPLE = 4,
+    GREEN = 5,
 
-    this.i = y;
-    this.j = x;
-    this.squareSize = squareSize;
-    this.x = (x * this.squareSize) + 1;
-    this.y = (y * this.squareSize) + 1;
-    this.color = color;
+    colors = [
+        [255],
+        [0],
+        [0, 0, 255],
+        [255, 0, 0],
+        [255, 0, 255],
+        [0, 255, 0]
+    ];
+
+function Node(i, j, squareSize, strokeSize) {
+
+    // Grid location
+    this.i = i;
+    this.j = j;
+
     this.strokeSize = strokeSize;
+    this.squareSize = squareSize;
+
+    // Coordinates on the plane
+    this.x = (j * this.squareSize) + 1;
+    this.y = (i * this.squareSize) + 1;
+
+    // Searching variables
     this.g = Infinity;
     this.h = 0;
 
+    // Color
+    this.color = 0;
+    this.lastDate = 0;
+
     this.update = function () {
         stroke(this.strokeSize);
-        fill(this.color.getColor());
+        fill(colors[this.color]);
         square(this.x, this.y, squareSize);
     };
 
     this.addChild = function (children, i, j) {
-        if (i >= 0 && j >= 0 && i < rows && j < cols && grid[i][j].color.id !== OBSTACLE) {
+        if (i >= 0 && j >= 0 && i < rows && j < cols && grid[i][j].color !== BLACK) {
             let child = grid[i][j];
             if (this.g + 1 < child.g) {
                 child.parent = this;
@@ -52,7 +69,38 @@ function Node(x, y, squareSize, color, strokeSize) {
             this.addChild(children, this.i + 1, this.j + 1);
         if (down && left)
             this.addChild(children, this.i + 1, this.j - 1);
-
         return children;
+    };
+
+    this.nextColor = function () {
+        if (Date.now() - this.lastDate < 200) {
+            return;
+        }
+        this.lastDate = Date.now();
+
+        if (this.color === BLACK) {// BLACK -> BLUE
+            if (start.i === -1) {
+                this.color = BLUE;
+                start = {i: this.i, j: this.j};
+            } else if (dest.i === -1) {
+                this.color = RED;
+                dest = {i: this.i, j: this.j};
+            } else {
+                this.color = WHITE;
+            }
+        } else if (this.color === BLUE) {// BLUE -> RED
+            if (dest.i === -1) {
+                this.color = RED;
+                dest = {i: this.i, j: this.j};
+            } else {
+                this.color = WHITE;
+            }
+            start.i = -1;
+        } else if (this.color === RED) {// RED -> WHITE
+            this.color = WHITE;
+            dest.i = -1;
+        } else {
+            this.color = BLACK;
+        }
     }
 }

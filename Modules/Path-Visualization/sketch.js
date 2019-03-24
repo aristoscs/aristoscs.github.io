@@ -7,7 +7,6 @@ const GRID_CREATION = 0,
 let grid, rows = 18, cols = 18,
     squareSize = 33, strokeSize = 5,
     mode = GRID_CREATION,
-    lastTick = 0,
     open, closed = [],
     start, dest;
 
@@ -18,7 +17,6 @@ function setup() {
     createCanvas((cols * squareSize) + strokeSize, (rows * squareSize) + strokeSize);
     background(255);
     reset();
-    initGrid();
 }
 
 function draw() {
@@ -33,14 +31,10 @@ function draw() {
  * Puts a few random obstacles on the grid.
  */
 function randomise() {
-    let obstacles = rows + cols;
-    while (obstacles-- !== 0) {
-        let i = floor(Math.random() * rows),
-            j = floor(Math.random() * cols);
-        if (grid[i][j].color.id === EMPTY) {
-            grid[i][j].color.id = OBSTACLE;
-        }
-    }
+    apply(node => {
+        if (node.color === WHITE && Math.random() < 0.2)
+            node.color = BLACK;
+    });
 }
 
 function tick() {
@@ -52,10 +46,10 @@ function tick() {
     if (closed[current.i * cols + current.j] === 1)
         return;
 
-    if (current.color.id !== DESTINATION && current.color.id !== START)
-        current.color.id = EXPANDED;
+    if (current.color !== BLUE && current.color !== RED)
+        current.color = PURPLE;
 
-    if (current.color.id === DESTINATION) {
+    if (current.color === RED) {
         mode = STOPPED;
         initPath(current.parent);
         return;
@@ -69,7 +63,7 @@ function tick() {
 }
 
 function setupSearch(queueType) {
-    if (mode !== GRID_CREATION || !initLocations()) {
+    if (mode !== GRID_CREATION || start.x === -1 || dest.x === -1) {
         return;
     }
     mode = SEARCHING;
@@ -83,39 +77,31 @@ function setupSearch(queueType) {
     open.enqueue(grid[start.i][start.j]);
 }
 
-function initLocations() {
-    apply(node => {
-        if (node.color.id === START) {
-            start.i = node.i;
-            start.j = node.j;
-        } else if (node.color.id === DESTINATION) {
-            dest.i = node.i;
-            dest.j = node.j;
-        }
-    });
-    return !(start.i === undefined || dest.i === undefined);
-}
-
 function initPath(current) {
     while (current.parent !== undefined) {
-        grid[current.i][current.j].color.id = PATH;
+        grid[current.i][current.j].color = GREEN;
         current = current.parent;
     }
 }
 
 function reset() {
     mode = GRID_CREATION;
-    lastTick = 0;
-    initGrid();
-    colorReset();
+    grid = [];
+    for (let i = 0; i < rows; i++) {
+        grid[i] = [];
+        for (let j = 0; j < cols; j++) {
+            grid[i][j] = new Node(i, j, squareSize, strokeSize);
+        }
+    }
+    start = {i: -1, j: -1};
+    dest = {i: -1, j: -1};
 }
 
 function mouseEvaluation() {
     if (mouseIsPressed && mouseOnCanvas()) {
-        let i, j;
-        i = floor(map(mouseY, 0, height, 0, rows));
-        j = floor(map(mouseX, 0, width, 0, cols));
-        grid[i][j].color.nextColor();
+        let i = floor(map(mouseY, 0, height, 0, rows)),
+            j = floor(map(mouseX, 0, width, 0, cols));
+        grid[i][j].nextColor();
     }
 }
 
@@ -132,7 +118,7 @@ function apply(f) {
 }
 
 function changeRows(form) {
-    if (mode === GRID_CREATION || mode === STOPPED) {
+    if (mode !== SEARCHING) {
         let r = parseInt(form.rows.value);
         let c = parseInt(form.cols.value);
         if (r && c && (r !== rows || c !== cols)) {
@@ -141,16 +127,4 @@ function changeRows(form) {
             setup();
         }
     }
-}
-
-function initGrid() {
-    grid = [];
-    for (let i = 0; i < rows; i++) {
-        grid[i] = [];
-        for (let j = 0; j < cols; j++) {
-            grid[i][j] = new Node(j, i, squareSize, new Color(EMPTY), strokeSize);
-        }
-    }
-    start = {i: undefined, j: undefined};
-    dest = {i: undefined, j: undefined};
 }
