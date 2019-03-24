@@ -1,6 +1,6 @@
 function PriorityQueue(comparator) {
 
-    this.heap = new Array(rows * cols);
+    this.heap = [];
     this.size = 0;
 
     this.comparator = comparator;
