@@ -1,1 +1,0 @@
-# Breadth first search and A* path finding visualization on a 2D grid using P5.js library.
