@@ -101,15 +101,85 @@
 			.dropdown:hover .dropdown-content {
 				display: block;
 			}
+			tab {
+				margin-left:3em;
+				font-size:20px;
+			}
+			.open-button {
+				background-color: #555;
+				color: white;
+				padding: 16px 20px;
+				border: none;
+				cursor: pointer;
+				opacity: 0.8;
+				position: fixed;
+				bottom: 23px;
+				right: 28px;
+				width: 280px;
+			}
 
+
+			.form-popup {
+				display: none;
+				position: fixed;
+				bottom: 0;
+				right: 15px;
+				border: 3px solid #f1f1f1;
+				z-index: 9;
+			}
+
+
+			.form-container {
+				max-width: 300px;
+				padding: 10px;
+				background-color: white;
+			}
+
+			.form-container input[type=text] {
+				width: 100%;
+				padding: 15px;
+				margin: 5px 0 22px 0;
+				border: none;
+				background: #f1f1f1;
+			}
+
+
+			.form-container .btn {
+				background-color: #4CAF50;
+				color: white;
+				padding: 16px 20px;
+				border: none;
+				cursor: pointer;
+				width: 100%;
+				margin-bottom:10px;
+				opacity: 0.8;
+			}
+
+			.form-container .cancel {
+				background-color: red;
+			}
+
+
+			.form-container .btn:hover, .open-button:hover {
+				opacity: 1;
+			}
+			div.prof img {
+				float: right;
+				max-width: 100%;
+			}
 		</style>
 	</head>
 	
 	<body>
 
 		<div class="header">
-		  <img src="logo.png" width="90" height=auto;>
-		  <h1>Emporium UCY</h1>
+			<img src="logo.png" width="90" height=auto;>
+			<div class="prof"> 
+				<a href="My profile.html">
+					<img src="user.png" width="60" height=auto;>
+				</a>
+			</div>
+			<h1>Emporium UCY</h1>
 		</div>
 
 		<div class="topnav">
@@ -143,8 +213,33 @@
 						<a href="#">Harassment</a>
 					</div>
 				</div>	
+				
+				<tab>
+				<button class="open-button" onclick="Message()">Message</button>
+
+				<div class="form-popup" id="myForm">
+				  <form action="/action_page.php" class="form-container">
+					<h1>Message</h1>
+					
+					<label for="message">Enter message:</label>
+					<textarea rows="3" placeholder="Type something.."></textarea>
+				
+					<a href="Other profile.html" class="button pull-left btn-lg btn">Send</a>
+					<button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
+				  </form>
+				</div>
+			</tab>
 			</div>	
 		</div>	
+		
+		<script>
+			function Message() {
+			  document.getElementById("myForm").style.display = "block";
+			}
 
+			function closeForm() {
+			  document.getElementById("myForm").style.display = "none";
+			}
+		</script>
 	</body>
 </html>
