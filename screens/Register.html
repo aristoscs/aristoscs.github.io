@@ -9,11 +9,26 @@
 				
 		<style type="text/css">
 			body{
-			background-image: url("water.jpg");
+				background-image: url("water.jpg");
+				background-repeat: no-repeat;
+				background-attachment: fixed;  
+				background-size: cover;
 			}
 			
 			img {
 				float: left;
+			}
+			.button {
+				background-color: rgb(252, 176, 64);
+				border: none;
+				color: black;
+				padding: 15px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 4px 2px;
+				cursor: pointer;
 			}
 		</style>
 		
@@ -40,51 +55,49 @@
 
 		<form action="#">
 
-		<div class="form-group">
-		<label for="Name">Name</label>
-		<input type="text" class="form-control" id="name">
-		</div>
+			<div class="form-group">
+			<label for="Name">Name</label>
+			<input type="text" class="form-control" id="name">
+			</div>
 
-		<div class="form-group">
-		<label for="Surname">Surname:</label>
-		<input type="text" class="form-control" id="surname">
-		</div>
+			<div class="form-group">
+			<label for="Surname">Surname:</label>
+			<input type="text" class="form-control" id="surname">
+			</div>
 
-		<div class="form-group">
-		<label for="pwd">Password:</label>
-		<input type="password" class="form-control" id="pwd">
-		</div>
+			<div class="form-group">
+			<label for="pwd">Password:</label>
+			<input type="password" class="form-control" id="pwd">
+			</div>
 
-		<div class="form-group">
-		<label for="pwd">Re-enter Password:</label>
-		<input type="password" class="form-control" id="pwd">
-		</div>
-		
-		<div class="form-group">
-		<label for="email">Email:</label>
-		<input type="email" class="form-control" id="email">
-		</div>
-		
-		<div class="form-group">
-		<label for="date">Date of Birth:</label>
-		<input type="date" class="form-control" id="date of birth">
-		</div>
-		
-		<div class="form-group">
-		<label for="phone number">Phone number:</label>
-		<input type="text" class="form-control" id="phone number">
-		</div>
-		
-		<div class="form-group">
-		<label for="sex">Sex:</label>
-		<input type="sex" class="form-control" id="sex">
-		</div>
-		
-		
-
-		<button type="cancel" class="pull-left btn btn-default btn-lg"><a href="Register.html">Cancel</button>
-		
-		<button type="submit" class="pull-right btn btn-default btn-lg"><a href="login.html">Submit</button>
+			<div class="form-group">
+			<label for="pwd">Re-enter Password:</label>
+			<input type="password" class="form-control" id="pwd">
+			</div>
+			
+			<div class="form-group">
+			<label for="email">Email:</label>
+			<input type="email" class="form-control" id="email">
+			</div>
+			
+			<div class="form-group">
+			<label for="date">Date of Birth:</label>
+			<input type="date" class="form-control" id="date of birth">
+			</div>
+			
+			<div class="form-group">
+			<label for="phone number">Phone number:</label>
+			<input type="text" class="form-control" id="phone number">
+			</div>
+			
+			<div class="form-group">
+			<label for="sex">Sex:</label>
+			<input type="sex" class="form-control" id="sex">
+			</div>
+			
+			<a href="login.html" class="pull-left button btn-lg">Cancel</a>
+			
+			<a href="login.html" class="pull-right button btn-lg">Submit</a>
 		</form>
 		<br/>
 		<br/>

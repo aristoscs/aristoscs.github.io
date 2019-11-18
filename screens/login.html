@@ -1,64 +1,92 @@
 <!DOCTYPE html>
 <html>
-	<head>
-	<style>
-
-
-	img{
-	position: absolute;
-	right: 300px;
-	width: 450px;
-	height: 300px;
-	padding: 140px 0px 0px 0px;
-	}
-
-	div {
-	float: left;
-	width: 300px;
-	padding: 50px;
-	margin:  200px 0px 0px 200px;  
-	background-color: rgb(230, 230, 230);
-	border: 5px solid rgb(125, 0, 125);
-	}
-
-	div3 {
-	float: left;
-	width: 300px;
-	padding: 50px;
-	margin:  125px 0px 0px 50px;  
-	}
-
-	body {
-	background-color: rgb(202, 204, 219);
-	}
-
-	div2 {
-	word-spacing: 35px;
-	}
-	</style>
-	</head>
 	<title>Emporium UCY - Login</title>
-	<body>
-		<div>
-			<label for="username">Username:</label>
-			<input type="text" id="usename"  placeholder="Username">
-			<br>
-			<label for="password">Password:</label>&nbsp;
-			<input class="input100" type="password" name="pass" placeholder="Password">
-			<span class="focus-input100"></span>
-			<span class="symbol-input100">
-				<i class="fa fa-lock" aria-hidden="true"></i>
-			</span>
-
-			<br>
-			<div2>&nbsp;&nbsp;<b><a href="Homepage.html">Login</a></b>
-			<b><a href="Register.html">Register</a></b></div2>
-			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<b><a href="Recover Account.html">Forgot your password?</a></b>
-		</div>
-
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 		
-		<img src="logo.png" width="450" height="300">
+		<style type="text/css">
+			body{
+				background-image: url("water.jpg");
+				background-repeat: no-repeat;
+				background-attachment: fixed;  
+				background-size: cover;
+			}
+			img{
+				width: 400px;
+				height: auto;
+				padding: 50px 0px 0px;
+			}
+			
+			.button {
+				background-color: rgb(252, 176, 64);
+				border: none;
+				color: black;
+				padding: 15px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 4px 2px;
+				cursor: pointer;
+			}
+			.button2 {
+				width: 100%;
+				background-color: rgb(252, 176, 64);
+				border: none;
+				color: black;
+				padding: 15px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 4px 2px;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	
+	
+	<body>
+	
+		<div class="container" style="margin-top: 5%;">
+			<div class="row">
+				<div class="col-sm-7">
+					<div class="col-sm-8">
+						<h1 class="text-center"> Login </h1>
+						<div class="tab-content">
+							<div id="home" class="tab-pane fade in active">
+								<form action="#">
+									<div class="form-group">
+										<label for="Username">Username:</label>
+										<input type="text" class="form-control" id="username">
+									</div>
 
+									<div class="form-group">
+										<label for="pwd">Password:</label>
+										<input type="password" class="form-control" id="pwd">
+									</div>
+
+									<br>
+			
+									<a href="Homepage.html" class="button pull-left btn-lg">Login</a>
+			
+									<a href="Register.html" class="button pull-right btn-lg">Register</a>
+			
+									<a href="Recover Account.html" class="button2  btn-lg btn">Forgot your password?</a>
+		
+								</form>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4"><img src="logo.png" class="media-object"></div>
+			</div>
+		</div>
 	</body>
 </html>
