@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	<title>Emporum UCY - Other profile</title>
+	<title>Emporium UCY - Items</title>
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,60 +46,6 @@
 			.topnav a:hover {
 			  background-color: #ddd;
 			  color: black;
-			}
-			tab {
-				margin-left:3em;
-				font-size:20px;
-			}
-			.button {
-				background-color: rgb(252, 176, 64);
-				border: none;
-				color: black;
-				padding: 15px 32px;
-				text-align: center;
-				text-decoration: none;
-				display: inline-block;
-				font-size: 16px;
-				margin: 4px 2px;
-				cursor: pointer;
-			}
-			.dropbtn {
-				background-color: rgb(252, 176, 64);
-				color: black;
-				padding: 15px 32px;
-				font-size: 16px;
-				border: none;
-				cursor: pointer;
-				margin 4px 2px;
-			}
-
-			.dropdown {
-				position: relative;
-				display: inline-block;
-			}
-
-			.dropdown-content {
-				display: none;
-				position: absolute;
-				background-color: #f9f9f9;
-				min-width: 160px;
-				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-				z-index: 1;
-			}
-
-			.dropdown-content a {
-				color: black;
-				padding: 15px 32px;
-				text-decoration: none;
-				display: block;
-			}
-
-			.dropdown-content a:hover {
-				background-color: #f1f1f1
-			}
-
-			.dropdown:hover .dropdown-content {
-				display: block;
 			}
 			tab {
 				margin-left:3em;
@@ -163,13 +109,24 @@
 			.form-container .btn:hover, .open-button:hover {
 				opacity: 1;
 			}
+			.button {
+				background-color: rgb(252, 176, 64);
+				border: none;
+				color: black;
+				padding: 15px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 4px 2px;
+				cursor: pointer;
+			}
 			div.prof img {
 				float: right;
 				max-width: 100%;
 			}
 		</style>
 	</head>
-	
 	<body>
 
 		<div class="header">
@@ -191,32 +148,14 @@
 			<a href="Upload product.html">Upload</a>
 			<a href="login.html">Logout</a>
 		</div>
-
+		
 		</div>
-			<img src="user3.png" width="250" height="250">
+			<img src="user2.png" width="250" height="250">
 		<div>
-		<div class="container" style="margin-top: 1%;">				
-			<div>
-				<tab>Name</tab>
-				<br><br>
-				<tab>Email</tab>
-				<br><br>
-				<tab>Message</tab>
-				<br><br>
-				<tab>Rating: -/5</tab>
-				<br><br>
-				<tab><a href="Other items.html" class="button">User Items</a></tab>	
-				
-				<div class="dropdown">
-					<button class="dropbtn">Report</button>
-					<div class="dropdown-content">
-						<a href="#">Scam</a>
-						<a href="#">Racism</a>
-						<a href="#">Harassment</a>
-					</div>
-				</div>	
-				
-				<tab>
+		<div class="container" style="margin-top: 1%;">
+			<tab><a href="Other profile.html">Seller profile</a></tab>
+			<br><br>
+			<tab>
 				<button class="open-button" onclick="Message()">Message</button>
 
 				<div class="form-popup" id="myForm">
@@ -226,13 +165,23 @@
 					<label for="message">Enter message:</label>
 					<textarea rows="3" placeholder="Type something.."></textarea>
 				
-					<a href="Other profile.html" class="button pull-left btn-lg btn">Send</a>
+					<a href="View product.html" class="button pull-left btn-lg btn">Send</a>
 					<button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
 				  </form>
 				</div>
 			</tab>
-			</div>	
-		</div>	
+		</div>
+		<br>
+		<img src="tex_book.jpg" width="300" height=auto;>
+		<div class="container" style="margin-top: 1%;">
+			
+			<div class="desc">
+				<tab>Text Books<br><br></tab>
+				<tab>Stationery<br><br></tab>
+				<tab>€5.00<br><br></tab>
+				<tab>Text Books in different colors. <br><tab>_______________________________ <br><tab> Colors available: Blue, Green, Red, Pink, Dark Blue, Yellow</tab>
+				</div>
+		</div>
 		
 		<script>
 			function Message() {
