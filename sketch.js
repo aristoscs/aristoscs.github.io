@@ -29,31 +29,26 @@ function draw() {
 
 function initializeGame() {
   canMove = true;
-  playerPos = createVector(2, 2);
+  playerPos = createVector(3, 2);
   boxes = [
-    createVector(3, 2),
+    createVector(4, 2),
     createVector(4, 3),
     createVector(4, 4),
-    createVector(1, 6),
-    createVector(3, 6),
-    createVector(4, 6),
-    createVector(5, 6),
-    createVector(6, 6),
+    createVector(2, 6),
     createVector(3, 7),
-    createVector(5, 7),
-    createVector(1, 2)
+    createVector(4, 7),
+    createVector(5, 7)
   ];
   targets = [
-    createVector(1, 2),
-    createVector(4, 2),
+    createVector(2, 2),
     createVector(3, 3),
     createVector(5, 3),
     createVector(2, 4),
-    createVector(2, 6),
     createVector(3, 4),
-    createVector(2, 7),
-    createVector(6, 4),
-    createVector(6, 7)
+    createVector(5, 4),
+    createVector(3, 5),
+    createVector(2, 6),
+    createVector(4, 6)
   ];
   walls = [
     createVector(2, 0),
@@ -61,36 +56,23 @@ function initializeGame() {
     createVector(4, 0),
     createVector(5, 0),
     createVector(6, 0),
-    createVector(0, 1),
-    createVector(1, 1),
-    createVector(6, 1),
+    createVector(7, 0),
     createVector(0, 2),
-    createVector(7, 2),
     createVector(0, 3),
-    createVector(7, 3),
     createVector(0, 4),
-    createVector(7, 4),
     createVector(0, 5),
-    createVector(7, 5),
-    createVector(1, 5),
-    createVector(6, 5),
-    createVector(7, 6),
-    createVector(0, 7),
-    createVector(1, 7),
-    createVector(2, 7),
-    createVector(3, 7),
-    createVector(4, 7),
-    createVector(5, 7),
-    createVector(6, 7),
-    createVector(7, 7),
-    createVector(0, 8),
-    createVector(1, 8),
+    createVector(0, 6),
     createVector(2, 8),
     createVector(3, 8),
     createVector(4, 8),
     createVector(5, 8),
     createVector(6, 8),
-    createVector(7, 8)
+    createVector(7, 8),
+    createVector(8, 2),
+    createVector(8, 3),
+    createVector(8, 4),
+    createVector(8, 5),
+    createVector(8, 6)
   ];
 }
 
