@@ -4,8 +4,34 @@
   <title>Sokoban Game</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    #buttonContainer {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      gap: 10px;
+    }
+    #messagePopup {
+      /* Your CSS styles for the message popup */
+      /* ... */
+    }
+    #resetButton {
+      /* Your CSS styles for the reset button */
+      /* ... */
+    }
+  </style>
 </head>
 <body>
+  <div id="buttonContainer">
+    <button onclick="startGame()">Play</button>
+    <button onclick="solvePuzzle()">Solve</button>
+  </div>
   <script src="sketch.js"></script>
   <script src="p5.min.js"></script>
   <div id="messagePopup"></div>
