@@ -28,3 +28,20 @@
   83.33% { color: indigo; }
   100% { color: violet; }
 }
+
+#resetButton {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: #A0522D; /* Brown */
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1000;
+}

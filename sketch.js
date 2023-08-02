@@ -138,14 +138,28 @@ function movePlayer(dx, dy) {
 }
 
 function showCongratulationMessage() {
+  canMove = false; // Prevent the player from moving
+
   const messagePopup = document.getElementById('messagePopup');
   messagePopup.innerHTML = "Congratulations! Level Completed!";
   messagePopup.classList.add('rainbow-text');
   messagePopup.style.display = 'block';
-  
-  // Hide the message after 5 seconds
+
+  // Hide the message after 5 seconds and show the reset button
   setTimeout(() => {
     messagePopup.style.display = 'none';
     messagePopup.classList.remove('rainbow-text');
+
+    const resetButton = document.getElementById('resetButton');
+    resetButton.style.display = 'block';
   }, 5000);
+}
+
+function resetLevel() {
+  canMove = true; // Allow the player to move again
+
+  const resetButton = document.getElementById('resetButton');
+  resetButton.style.display = 'none';
+
+  initializeGame();
 }
