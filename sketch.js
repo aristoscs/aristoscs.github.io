@@ -117,7 +117,7 @@ function keyPressed() {
 }
 
 function movePlayer(dx, dy) {
-  if (canMove!)
+  if (!canMove)
 	  return;
 	
   const newX = playerPos.x + dx;
