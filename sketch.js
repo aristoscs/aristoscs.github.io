@@ -18,7 +18,7 @@ let walls;
 let canMove = false;
 
 function setup() {
-  createCanvas(TILE_SIZE * MAP_WIDTH, TILE_SIZE * MAP_HEIGHT + 50); // Add extra height for the buttons
+  createCanvas(TILE_SIZE * MAP_WIDTH, TILE_SIZE * MAP_HEIGHT + 40); // Add extra height for the buttons
   initializeGame();
 }
 
