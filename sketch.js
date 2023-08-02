@@ -1,5 +1,4 @@
-class MaxHeap {
-	
+class MinHeap {
   constructor() {
     this.heap = [];
   }
@@ -70,7 +69,7 @@ class MaxHeap {
 
   heapifyUp() {
     let index = this.heap.length - 1;
-    while (this.hasParent(index) && this.parent(index).getG() < this.heap[index].getG()) {
+    while (this.hasParent(index) && this.parent(index).getG() > this.heap[index].getG()) {
       this.swap(this.getParentIndex(index), index);
       index = this.getParentIndex(index);
     }
@@ -79,20 +78,20 @@ class MaxHeap {
   heapifyDown() {
     let index = 0;
     while (this.hasLeftChild(index)) {
-      let largerChildIndex = this.getLeftChildIndex(index);
-      if (this.hasRightChild(index) && this.rightChild(index).getG() > this.leftChild(index).getG()) {
-        largerChildIndex = this.getRightChildIndex(index);
+      let smallerChildIndex = this.getLeftChildIndex(index);
+      if (this.hasRightChild(index) && this.rightChild(index).getG() < this.leftChild(index).getG()) {
+        smallerChildIndex = this.getRightChildIndex(index);
       }
-      if (this.heap[index].getG() > this.heap[largerChildIndex].getG()) {
+      if (this.heap[index].getG() < this.heap[smallerChildIndex].getG()) {
         break;
       } else {
-        this.swap(index, largerChildIndex);
+        this.swap(index, smallerChildIndex);
       }
-      index = largerChildIndex;
+      index = smallerChildIndex;
     }
   }
+  
 }
-
 
 class State {
     
