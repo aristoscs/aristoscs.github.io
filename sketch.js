@@ -18,7 +18,7 @@ let walls;
 let canMove = true;
 
 function setup() {
-  createCanvas(TILE_SIZE * MAP_WIDTH, TILE_SIZE * MAP_HEIGHT);
+  createCanvas(TILE_SIZE * MAP_WIDTH, TILE_SIZE * MAP_HEIGHT + 50); // Add extra height for the buttons
   initializeGame();
 }
 
@@ -26,6 +26,15 @@ function draw() {
   background(255);
   drawMap();
 }
+
+function startGame() {
+  initializeGame();
+}
+
+function solvePuzzle() {
+  // This function will be implemented later
+}
+
 
 function initializeGame() {
   canMove = true;
