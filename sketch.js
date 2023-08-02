@@ -37,15 +37,15 @@ function initializeGame() {
     
   ];
   walls = [
-	createVector(0, 2), createVector(0, 3), createVector(0, 4), createVector(0, 5), createVector(0, 6),
-	createVector(1, 0), createVector(1, 1), createVector(1, 2), createVector(1, 6),
-	createVector(2, 0), createVector(2, 6),
-	createVector(3, 0), createVector(3, 1), createVector(3, 2), createVector(3, 6),
-	createVector(4, 0), createVector(4, 2), createVector(4, 3), createVector(4, 6),
-	createVector(5, 0), createVector(5, 2), createVector(5, 6), createVector(5, 7),
-	createVector(6, 0), createVector(6, 7),
-	createVector(7, 0), createVector(7, 7),
-	createVector(8, 0), createVector(8, 1), createVector(8, 2), createVector(8, 3), createVector(8, 4), createVector(8, 5), createVector(8, 6), createVector(8, 7)
+	createVector(2, 0), createVector(3, 0), createVector(4, 0), createVector(5, 0), createVector(6, 0),
+	createVector(0, 1), createVector(1, 1), createVector(2, 1), createVector(6, 1),
+	createVector(0, 2), createVector(6, 2),
+	createVector(0, 3), createVector(1, 3), createVector(2, 3), createVector(6, 3),
+	createVector(0, 4), createVector(2, 4), createVector(3, 4), createVector(6, 4),
+	createVector(0, 5), createVector(2, 5), createVector(6, 5), createVector(7, 5),
+	createVector(0, 6), createVector(7, 6),
+	createVector(0, 7), createVector(7, 7),
+	createVector(0, 8), createVector(1, 8), createVector(2, 8), createVector(3, 8), createVector(4, 8), createVector(5, 8), createVector(6, 8), createVector(7, 8)
   ];
 }
 
