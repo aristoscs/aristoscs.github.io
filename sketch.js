@@ -3,19 +3,10 @@ class State {
 	constructor(parent, direction, g, hash, pi, pj) {
         this.parent = parent;
         this.direction = direction;
-        this.g = 0;
+        this.g = g;
         this.hash = hash;
         this.pi = pi;
         this.pj = pj;
-		
-		if (direction === 'U')
-            this.pi -= 1;
-        else if (direction === 'D')
-            this.pi += 1;
-        else if (direction === 'L')
-            this.pj -= 1;
-        else if (direction === 'R')
-            this.pj += 1;
     }
 
 }
