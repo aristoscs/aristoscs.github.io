@@ -37,7 +37,6 @@ function solvePuzzle() {
 
 
 function initializeGame() {
-  canMove = true;
   playerPos = createVector(2, 2);
   boxes = [
 	createVector(3, 2),
