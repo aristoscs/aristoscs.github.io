@@ -15,6 +15,8 @@ let boxes;
 let targets;
 let walls;
 
+let canMove;
+
 function setup() {
   createCanvas(TILE_SIZE * MAP_WIDTH, TILE_SIZE * MAP_HEIGHT);
   initializeGame();
@@ -26,6 +28,7 @@ function draw() {
 }
 
 function initializeGame() {
+  canMove = true;
   playerPos = createVector(1, 1);
   boxes = [
     createVector(2, 3),
@@ -159,8 +162,6 @@ function showCongratulationMessage() {
 }
 
 function resetLevel() {
-  canMove = true; // Allow the player to move again
-
   const resetButton = document.getElementById('resetButton');
   resetButton.style.display = 'none';
 
