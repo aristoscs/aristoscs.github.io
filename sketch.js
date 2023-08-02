@@ -37,7 +37,12 @@ function initializeGame() {
 	createVector(1, 6), createVector(3, 6), createVector(4, 6), createVector(5, 6)
   ];
   targets = [
-    
+    createVector(1, 2),
+	createVector(5, 3),
+	createVector(1, 4),
+	createVector(4, 5),
+	createVector(6, 6),
+	createVector(4, 7),
   ];
   walls = [
 	createVector(2, 0), createVector(3, 0), createVector(4, 0), createVector(5, 0), createVector(6, 0),
