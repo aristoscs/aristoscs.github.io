@@ -17,6 +17,9 @@
       display: flex;
       gap: 10px;
     }
+    #game-container {
+      margin-top: 60px; /* Add some top margin to push the map down */
+    }
     #messagePopup {
       /* Your CSS styles for the message popup */
       /* ... */
@@ -32,8 +35,10 @@
     <button onclick="startGame()">Play</button>
     <button onclick="solvePuzzle()">Solve</button>
   </div>
-  <script src="sketch.js"></script>
-  <script src="p5.min.js"></script>
+  <div id="game-container">
+    <script src="sketch.js"></script>
+    <script src="p5.min.js"></script>
+  </div>
   <div id="messagePopup"></div>
   <div id="resetButton" onclick="resetLevel()">Reset Level</div>
 </body>
