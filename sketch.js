@@ -1,3 +1,34 @@
+class State {
+    
+	constructor(hash, pi, pj) {
+        this.parent = null;
+        this.direction = '\0';
+        this.g = 0;
+        this.hash = hash;
+        this.pi = pi;
+        this.pj = pj;
+    }
+
+    constructor(state, direction, hash) {
+        this.parent = state;
+        this.direction = direction;
+        this.g = state.g + 1;
+        this.hash = hash;
+
+        this.pi = state.pi;
+        this.pj = state.pj;
+
+        if (direction === 'U')
+            this.pi -= 1;
+        else if (direction === 'D')
+            this.pi += 1;
+        else if (direction === 'L')
+            this.pj -= 1;
+        else if (direction === 'R')
+            this.pj += 1;
+    }
+}
+
 const TILE_SIZE = 50;
 const MAP_WIDTH = 8;
 const MAP_HEIGHT = 9;
@@ -32,7 +63,9 @@ function startGame() {
 }
 
 function solvePuzzle() {
-  // This function will be implemented later
+   canMove = false;
+   
+   // TODO: PriorityQueue, HashSet<String> 
 }
 
 
