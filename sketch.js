@@ -120,9 +120,13 @@ function isTargetTile(x, y) {
 }
 
 function keyPressed() {
-  const dx = key === 'ArrowRight' ? 1 : key === 'ArrowLeft' ? -1 : 0;
-  const dy = key === 'ArrowDown' ? 1 : key === 'ArrowUp' ? -1 : 0;
-  movePlayer(dx, dy);
+  if (key === ' ') {
+    resetLevel();
+  } else {
+    const dx = key === 'ArrowRight' ? 1 : key === 'ArrowLeft' ? -1 : 0;
+    const dy = key === 'ArrowDown' ? 1 : key === 'ArrowUp' ? -1 : 0;
+    movePlayer(dx, dy);
+  }
 }
 
 function movePlayer(dx, dy) {
