@@ -65,6 +65,7 @@ function startGame() {
 function solvePuzzle() {
    canMove = false;
    
+   console.log("Solve");
    // TODO: PriorityQueue, HashSet<String> 
 }
 
