@@ -89,6 +89,15 @@ function drawMap() {
   }
 }
 
+function checkLevelCompletion() {
+  for (const target of targets) {
+    if (!boxes.some(box => box.x === target.x && box.y === target.y)) {
+      return false; // If any target position has no box on top, the level is not complete
+    }
+  }
+  return true; // If all target positions have a box on top, the level is complete
+}
+
 function isWallTile(x, y) {
   return walls.some(wall => wall.x === x && wall.y === y);
 }
@@ -122,4 +131,21 @@ function movePlayer(dx, dy) {
       playerPos.set(newX, newY);
     }
   }
+  
+  if (checkLevelCompletion()) {
+    showCongratulationMessage();
+  }
+}
+
+function showCongratulationMessage() {
+  const messagePopup = document.getElementById('messagePopup');
+  messagePopup.innerHTML = "Congratulations! Level Completed!";
+  messagePopup.classList.add('rainbow-text');
+  messagePopup.style.display = 'block';
+  
+  // Hide the message after 5 seconds
+  setTimeout(() => {
+    messagePopup.style.display = 'none';
+    messagePopup.classList.remove('rainbow-text');
+  }, 5000);
 }
