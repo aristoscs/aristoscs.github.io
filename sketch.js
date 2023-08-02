@@ -32,7 +32,7 @@ function initializeGame() {
   playerPos = createVector(2, 2);
   boxes = [
 	createVector(3, 2),
-	createVector(3, 4),
+	createVector(4, 3),
 	createVector(4, 4),
 	createVector(1, 6), createVector(3, 6), createVector(4, 6), createVector(5, 6)
   ];
