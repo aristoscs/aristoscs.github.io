@@ -15,7 +15,7 @@ let boxes;
 let targets;
 let walls;
 
-let canMove;
+let canMove = true;
 
 function setup() {
   createCanvas(TILE_SIZE * MAP_WIDTH, TILE_SIZE * MAP_HEIGHT);
