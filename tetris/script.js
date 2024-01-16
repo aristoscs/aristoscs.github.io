@@ -123,6 +123,7 @@ function draw() {
             window.alert('Game over!');
             grid = createEmptyGrid();
             piece = new Piece(blue, 1);
+            score = 0;
         } else {
             piece = newPiece;
             rand = Math.floor(random(7));
