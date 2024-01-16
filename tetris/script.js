@@ -113,6 +113,7 @@ function draw() {
 
     piece.show();
     piece.update();
+    showPredictedLanding();
 
     newPiece.newShow();
 
@@ -144,6 +145,45 @@ function draw() {
             }
         }
     }
+}
+
+function showPredictedLanding() {
+    let tempDown = piece.down;
+    while (!isCollision()) {
+        piece.down++;
+    }
+    piece.down--;
+
+    for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 4; j++) {
+            if (piece.cells[i][j] === 0) continue;
+
+            let x = j + piece.right - piece.left;
+            let y = i + piece.down;
+            stroke(100);
+            fill(200, 200, 200, 150); // Semi-transparent fill for predicted landing
+            rect(x * BLOCK_SIZE, (y + 1) * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+        }
+    }
+
+    piece.down = tempDown; // Restore the original position
+}
+
+// Add this function to check for collision during simulation
+function isCollision() {
+    for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 4; j++) {
+            if (piece.cells[i][j] === 0) continue;
+
+            let x = j + piece.right - piece.left;
+            let y = i + piece.down + 1;
+
+            if (y >= ROWS || grid[y][x] >= 1) {
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 function checkFinishedRows() {
@@ -281,6 +321,11 @@ function Piece(cells, color) {
 function keyPressed() {
     if (piece.frozen)
         return;
+
+        if (!piece.frozen) {
+            // Add this line to show predicted landing position when the down arrow is pressed
+            showPredictedLanding();
+        }
 
     if (keyCode === LEFT_ARROW) {
         let flag = false;
