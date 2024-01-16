@@ -394,13 +394,21 @@ function rotateMatrix(matrix) {
 }
 
 // Function to check if a rotation is valid
+// Function to check if a rotation is valid
 function isValidRotation(rotatedCells) {
     for (let i = 0; i < 4; i++) {
         for (let j = 0; j < 4; j++) {
             if (rotatedCells[i][j] === 1) {
                 let x = j + piece.right - piece.left;
                 let y = i + piece.down;
-                if (x < 0 || x >= COLS || y >= ROWS || grid[y][x] >= 1) {
+                
+                // Check if the rotated cell is within the grid bounds
+                if (x < 0 || x >= COLS || y >= ROWS) {
+                    return false;
+                }
+                
+                // Check if the rotated cell overlaps with filled cells in the grid
+                if (grid[y][x] >= 1) {
                     return false;
                 }
             }
@@ -408,6 +416,7 @@ function isValidRotation(rotatedCells) {
     }
     return true;
 }
+
 
 function drawGrid() {
     for (let i = 0; i < ROWS; i++) {
