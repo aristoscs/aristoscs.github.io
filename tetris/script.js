@@ -52,20 +52,69 @@ let COLS = 10;
 let BLOCK_SIZE = 30;
 
 let grid;
-let piece = new Piece(blue, 1);
+let piece;
+let newPiece;
+
+let score = 0;
 
 function setup() {
-    createCanvas(300, 600);
+    createCanvas(480, 600);
     grid = createEmptyGrid();
     frameRate(3);
+
+    textFont('Arial');
+    textSize(36);
+    textAlign(CENTER, CENTER);
+
+    
+
+    let rand = Math.floor(random(7));
+    if (rand === 0) {
+        piece = new Piece(blue, 1);
+    } else if (rand === 1) {
+        piece = new Piece(cyan, 2);
+    } else if (rand === 2) {
+        piece = new Piece(green, 3);
+    } else if (rand === 3) {
+        piece = new Piece(orange, 4);
+    } else if (rand === 4) {
+         piece = new Piece(brown, 5);
+    } else if (rand === 5) {
+        piece = new Piece(pink, 6);
+    } else if (rand === 6) {
+        piece = new Piece(purple, 7);
+    }
+
+    rand = Math.floor(random(7));
+    if (rand === 0) {
+        newPiece = new Piece(blue, 1);
+    } else if (rand === 1) {
+        newPiece = new Piece(cyan, 2);
+    } else if (rand === 2) {
+        newPiece = new Piece(green, 3);
+    } else if (rand === 3) {
+        newPiece = new Piece(orange, 4);
+    } else if (rand === 4) {
+        newPiece = new Piece(brown, 5);
+    } else if (rand === 5) {
+        newPiece = new Piece(pink, 6);
+    } else if (rand === 6) {
+        newPiece = new Piece(purple, 7);
+    }
 }
 
 function draw() {
-    background(255);
+    background(240);
     drawGrid();
+
+    fill(0);
+    noStroke();
+    text(score, 400, 40);
 
     piece.show();
     piece.update();
+
+    newPiece.newShow();
 
     if (piece.frozen) {
         makePartOfGrid(piece);
@@ -75,21 +124,22 @@ function draw() {
             grid = createEmptyGrid();
             piece = new Piece(blue, 1);
         } else {
-            let rand = Math.floor(random(7));
+            piece = newPiece;
+            rand = Math.floor(random(7));
             if (rand === 0) {
-                piece = new Piece(blue, 1);
+                newPiece = new Piece(blue, 1);
             } else if (rand === 1) {
-                piece = new Piece(cyan, 2);
+                newPiece = new Piece(cyan, 2);
             } else if (rand === 2) {
-                piece = new Piece(green, 3);
+                newPiece = new Piece(green, 3);
             } else if (rand === 3) {
-                piece = new Piece(orange, 4);
+                newPiece = new Piece(orange, 4);
             } else if (rand === 4) {
-                piece = new Piece(brown, 5);
+                newPiece = new Piece(brown, 5);
             } else if (rand === 5) {
-                piece = new Piece(pink, 6);
+                newPiece = new Piece(pink, 6);
             } else if (rand === 6) {
-                piece = new Piece(purple, 7);
+                newPiece = new Piece(purple, 7);
             }
         }
     }
@@ -104,6 +154,7 @@ function checkFinishedRows() {
                     grid[r + 1][c] = grid[r][c];
                 }
             }
+            score += 100;
             i++;
         }
     }
@@ -136,6 +187,34 @@ function Piece(cells, color) {
 
     this.frozen = false;
     this.color = color;
+
+    this.newShow = function() {
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 4; j++) {
+                if (this.cells[i][j] === 0)
+                    continue;
+
+                stroke(0);
+                if (this.color === 1) {
+                    fill(0, 0, 255);
+                } else if (this.color === 2) {
+                    fill(0, 255, 255)
+                } else if (this.color === 3) {
+                    fill(0, 255, 0);
+                } else if (this.color === 4) {
+                    fill(255, 165, 0);
+                } else if (this.color === 5) {
+                    fill(165, 42, 42);
+                } else if (this.color === 6) {
+                    fill(255, 192, 203);
+                } else if (this.color === 7) {
+                    fill(128, 0, 128);
+                }
+
+                rect(350 + j * BLOCK_SIZE, 300 + i * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+            }
+        }
+    }
 
     this.show = function () {
         for (let i = 0; i < 4; i++) {
@@ -180,6 +259,7 @@ function Piece(cells, color) {
             }
             if (!this.frozen) {
                 this.down++;
+                score++;
             }
         }
     }
@@ -238,8 +318,10 @@ function keyPressed() {
                     flag = true;
             }
         }
-        if (!flag)
+        if (!flag) {
             piece.down++;
+            score++;
+        }
         else
             piece.frozen = true;
     } else if (keyCode === UP_ARROW) {
