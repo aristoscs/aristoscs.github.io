@@ -9,3 +9,8 @@ The player cannot go through walls but can move diagonally.
 Sample Tetris Game at: 
 
 https://aristoscs.github.io/tetris/
+
+---------------------------------------------------------------
+Sample Snake Game at:
+
+https://aristoscs.github.io/snake/
