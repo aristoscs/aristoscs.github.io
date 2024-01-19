@@ -4,6 +4,7 @@ Set start(blue color), exit(red color) and obstacles(black color) and click on t
 
 The player cannot go through walls but can move diagonally.
 
+https://aristoscs.github.io
 
 ---------------------------------------------------------------
 Sample Tetris Game at: 
