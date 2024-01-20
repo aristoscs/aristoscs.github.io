@@ -1,12 +1,16 @@
 let bird;
 let obstacles = [];
-let gameOver = false;
+let gameOver = true; // Set to true initially
 let holeSize = 100;
 let score = 0;
+let startButton;
 
 function setup() {
   createCanvas(400, 600);
   bird = new Bird();
+  startButton = createButton('Start Game');
+  startButton.position(570, height + 20); // Adjust the Y position
+  startButton.mousePressed(startGame);
 }
 
 function draw() {
@@ -57,7 +61,17 @@ function draw() {
     fill(255, 0, 0);
     text("Game Over", width / 2 - 100, height / 2);
     text("Score: " + score, width / 2 - 60, height / 2 + 40);
+    startButton.show();
   }
+}
+
+function startGame() {
+  // Reset game variables
+  score = 0;
+  obstacles = [];
+  bird = new Bird();
+  gameOver = false;
+  startButton.hide();
 }
 
 function keyPressed() {
