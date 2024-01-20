@@ -11,6 +11,7 @@ Sample Tetris Game at:
 
 https://aristoscs.github.io/tetris/
 
+---------------------------------------------------------------
 
 Sample Snake Game at:
 
@@ -19,4 +20,5 @@ https://aristoscs.github.io/snake/
 ---------------------------------------------------------------
 
 Flappy Cube: Press spacebar to jump
+
 https://aristoscs.github.io/flappy/
