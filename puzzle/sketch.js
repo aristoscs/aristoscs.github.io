@@ -66,18 +66,22 @@ const SOLVED = 1;
 let mode = 0;
 
 
-let puzzle = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 0],
-]
+let puzzle;
 
-let zero = { i: 2, j: 2 };
+let zero;
 
-let solution = [];
+let solution;
 
 function setup() {
     createCanvas(300, 300);
+    mode = 0;
+    puzzle = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 0],
+    ];
+    zero = { i: 2, j: 2 }
+    solution = [];
 }
 
 let count = 0;
@@ -104,7 +108,11 @@ function draw() {
     if (mode === SOLVED && count < solution.length) {
         puzzle = solution[count++].puzzle;
     } else if (mode === SOLVED && count >= solution.length) {
-        noLoop();
+        mode = 0;
+        zero = { i: 2, j: 2 }
+        solution = [];
+        count = 0;
+        frameRate(60);
     }
 }
 
