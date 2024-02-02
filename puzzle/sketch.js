@@ -103,6 +103,8 @@ function draw() {
 
     if (mode === SOLVED && count < solution.length) {
         puzzle = solution[count++].puzzle;
+    } else if (mode === SOLVED && count >= solution.length) {
+        noLoop();
     }
 }
 
