@@ -22,3 +22,9 @@ https://aristoscs.github.io/snake/
 Flappy Cube: Press spacebar to jump
 
 https://aristoscs.github.io/flappy/
+
+---------------------------------------------------------------
+
+N puzzle automatic solver using A* algorithm, shuffle the puzzle and click solve.
+
+https://aristoscs.github.io/puzzle/
