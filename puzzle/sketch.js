@@ -76,11 +76,11 @@ function setup() {
     createCanvas(300, 300);
     mode = 0;
     puzzle = [
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 0],
+        [0, 1, 2],
+        [4, 5, 3],
+        [7, 8, 6],
     ];
-    zero = { i: 2, j: 2 }
+    zero = { i: 0, j: 0 }
     solution = [];
 }
 
