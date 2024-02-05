@@ -22,6 +22,8 @@ function draw() {
 }
 
 function keyPressed() {
+    let originalGrid = copyGrid(grid);
+
     if (keyCode === UP_ARROW) {
         let locations = [];
         for (let i = 0; i < rows; i++) {
@@ -62,8 +64,38 @@ function keyPressed() {
         }
         slideRIGHT(locations);
     }
+    if (gridFull() && noMergesPossible(originalGrid, grid)) {
+        alert("Game Over - You Lose!");
+        noLoop();
+    }
 
     addRandomNumber();
+}
+
+function gridFull() {
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+            if (grid[i][j] === 0) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+function noMergesPossible(originalGrid, newGrid) {
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+            if (originalGrid[i][j] !== newGrid[i][j]) {
+                return false; // A merge occurred, the game is not lost
+            }
+        }
+    }
+    return true; // No merges occurred, the game is lost
+}
+
+function copyGrid(source) {
+    return source.map(row => row.slice());
 }
 
 function slideRIGHT(locations) {
