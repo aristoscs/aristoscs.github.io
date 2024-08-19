@@ -96,8 +96,11 @@ function a_star() {
 
     mode = A_STAR_MODE;
     open = new PriorityQueue((n1, n2) => {
-        let fx = (n1.g + n1.h) - (n2.g + n2.h);
-        return fx;
+        let f1 = (n1.g + n1.h);
+        let f2 = (n2.g + n2.h);
+        if (f1 == f2)
+                return n1.g - n2.g;
+        return f1 - f2;
     });
     closed = [];
     grid[start.i][start.j].g = 0;
