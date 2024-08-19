@@ -24,12 +24,12 @@ function Node(x, y, squareSize, color, strokeSize) {
         square(this.x, this.y, squareSize);
     };
 
-    this.addChild = function (children, i, j) {
+    this.addChild = function (children, i, j, increment) {
         if (i >= 0 && j >= 0 && i < rows && j < cols && grid[i][j].color.id !== OBSTACLE) {
             let child = grid[i][j];
-            if (this.g + 1 < child.g) {
+            if (this.g + increment < child.g) {
                 child.parent = this;
-                child.g = this.g + 1;
+                child.g = this.g + increment;
                 children.push(child);
             }
             return true;
@@ -39,19 +39,19 @@ function Node(x, y, squareSize, color, strokeSize) {
 
     this.computeChildren = function () {
         let children = [],
-            up = this.addChild(children, this.i - 1, this.j),
-            down = this.addChild(children, this.i + 1, this.j),
-            left = this.addChild(children, this.i, this.j - 1),
-            right = this.addChild(children, this.i, this.j + 1);
+            up = this.addChild(children, this.i - 1, this.j, 1),
+            down = this.addChild(children, this.i + 1, this.j, 1),
+            left = this.addChild(children, this.i, this.j - 1, 1),
+            right = this.addChild(children, this.i, this.j + 1, 1);
 
         if (up && right)
-            this.addChild(children, this.i - 1, this.j + 1);
+            this.addChild(children, this.i - 1, this.j + 1, 0.5857864);
         if (up && left)
-            this.addChild(children, this.i - 1, this.j - 1);
+            this.addChild(children, this.i - 1, this.j - 1, 0.5857864);
         if (down && right)
-            this.addChild(children, this.i + 1, this.j + 1);
+            this.addChild(children, this.i + 1, this.j + 1, 0.5857864);
         if (down && left)
-            this.addChild(children, this.i + 1, this.j - 1);
+            this.addChild(children, this.i + 1, this.j - 1, 0.5857864);
 
         return children;
     }
