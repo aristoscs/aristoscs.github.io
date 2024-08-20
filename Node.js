@@ -45,13 +45,13 @@ function Node(x, y, squareSize, color, strokeSize) {
             right = this.addChild(children, this.i, this.j + 1, 1);
 
         if (up && right)
-            this.addChild(children, this.i - 1, this.j + 1, 0.5857864);
+            this.addChild(children, this.i - 1, this.j + 1, 1.414213);
         if (up && left)
-            this.addChild(children, this.i - 1, this.j - 1, 0.5857864);
+            this.addChild(children, this.i - 1, this.j - 1, 1.414213);
         if (down && right)
-            this.addChild(children, this.i + 1, this.j + 1, 0.5857864);
+            this.addChild(children, this.i + 1, this.j + 1, 1.414213);
         if (down && left)
-            this.addChild(children, this.i + 1, this.j - 1, 0.5857864);
+            this.addChild(children, this.i + 1, this.j - 1, 1.414213);
 
         return children;
     }
