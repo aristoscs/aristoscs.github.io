@@ -102,7 +102,7 @@ class Element implements Comparable<Element> {
         if (used == totalModules) {
             return true;
         }
-        if (iterations++ > 200)
+        if (iterations++ > totalModules * 2)
             return false;
 
         int[] location = getLocation();
@@ -187,7 +187,7 @@ class Element implements Comparable<Element> {
         if (used == totalModules) {
             return true;
         }
-        if (iterations++ > 200)
+        if (iterations++ > totalModules * 2)
             return false;
 
         int[] location = getLocation();
@@ -548,8 +548,6 @@ class Teacher {
 
 public class Main {
 
-    static HashMap<String, Teacher> subjectTeacher = new HashMap<>();
-    static HashMap<String, List<Student>> subjectStudents = new HashMap<>();
     static List<Student> students = getStudents("Students.txt");
     static List<Subject> subjects = getSubjects("Subjects.txt");
     static List<Teacher> teachers = getTeachers("Teachers.txt");
@@ -560,18 +558,18 @@ public class Main {
             totalModules += subject.periods;
         }
 
-        Element[] population = new Element[250];
-        for (int i = 0; i < population.length; i++) {
-            population[i] = new Element(students, subjects, teachers, totalModules);
-            population[i].subjects.sort(Comparator.comparingInt((Subject s) -> s.periods).reversed());
-            Collections.shuffle(population[i].subjects);
+        int population_size = 1024;
+        List<Element> population = new ArrayList<>(population_size + 1);
+        for (int i = 0; i < population_size; i++) {
+            population.add(new Element(students, subjects, teachers, totalModules));
+            population.get(i).subjects.sort(Comparator.comparingInt((Subject s) -> s.periods).reversed());
+            Collections.shuffle(population.get(i).subjects);
         }
 
         List<Element> best = new ArrayList<>();
         int generation = 1;
         while (generation < 50) {
-            for (Element element : population)
-                element.run();
+            population.parallelStream().forEach(Element::run);
 
             int maxScore = -1;
             Element highest = null;
@@ -591,16 +589,17 @@ public class Main {
             for (Element element : population)
                 element.fitness = ((double) element.depth) / sum;
 
-            Element[] newPopulation = new Element[population.length];
-            for (int i = 0; i < population.length; i++) {
+            List<Element> newPopulation = new ArrayList<>(population_size + 1);
+            for (int i = 0; i < population.size(); i++) {
                 if (Math.random() < 0.1) {
-                    newPopulation[i] = new Element(students, subjects, teachers, totalModules);
-                    Collections.shuffle(newPopulation[i].subjects);
+                    newPopulation.add(new Element(students, subjects, teachers, totalModules));
+                    newPopulation.get(i).subjects.sort(Comparator.comparingInt((Subject s) -> s.periods).reversed());
+                    Collections.shuffle(newPopulation.get(i).subjects);
                     continue;
                 }
-                newPopulation[i] = crossover(pickOne(population), pickOne(population));
+                newPopulation.add(crossover(pickOne(population), pickOne(population)));
                 if (Math.random() < 0.1) {
-                    List<Subject> toShuffle = newPopulation[i].subjects;
+                    List<Subject> toShuffle = newPopulation.get(i).subjects;
                     for (int j = 0; j < toShuffle.size() / 3; j++) {
                         int index1 = (int) (Math.random() * toShuffle.size());
                         int index2;
@@ -625,8 +624,9 @@ public class Main {
                 best.remove(i);
 
         int[] scores = new int[best.size()];
-        for (int i = 0; i < scores.length; i++)
+        for (int i = 0; i < scores.length; i++) {
             scores[i] = best.get(i).fitness();
+        }
 
         int index = -1;
         int maxScore = -1;
@@ -685,16 +685,16 @@ public class Main {
     }
 
 
-    private static Element pickOne(Element[] population) {
+    private static Element pickOne(List<Element> population) {
         int index = 0;
         double r = Math.random();
 
         while(r > 0) {
-            r = r - population[index].fitness;
+            r = r - population.get(index).fitness;
             index++;
         }
         index--;
-        return population[index];
+        return population.get(index);
     }
 
     public static void printTimeTable(String[][][] timeTable) {
@@ -726,7 +726,6 @@ public class Main {
                 teacher.name = data[0];
                 for (int i = 1; i < data.length - 2; i++) {
                     teacher.subjects.add(data[i]);
-                    subjectTeacher.put(data[i], teacher);
                 }
                 String[] availability = data[data.length - 2].split(" ");
                 for (int i = 0; i < availability.length; i++) {
@@ -777,7 +776,6 @@ public class Main {
                 student.name = data[0];
                 for (int i = 1; i < data.length - 1; i++) {
                     student.subjects.add(data[i]);
-                    subjectStudents.computeIfAbsent(data[i], k -> new ArrayList<>()).add(student);
                 }
                 student.time = data[data.length - 1].split(" ");
 
